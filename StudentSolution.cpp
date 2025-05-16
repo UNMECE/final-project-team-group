@@ -74,7 +74,33 @@ void solveProblems(AcequiaManager& manager)
 	//The manager takes care of updating the waterLevels of each region and waterSource while the student is just expected
 	//to solve how to address the state of each region
 
-		
+	// Start of student code
+	
+	void RegionStatus(const std::vector<Region*>& region, int hour) {
+		std::cout<< "---Simulation Hour " <<hour <<"---" <<std::endl;
+
+		for(int i=0; i<region.size(); ++i) {
+			Region* region = region[i];
+				double level = region->getWaterLevel();
+				double min = region->getMinWaterLevel();
+				double max = region->getMaxWaterLevel();
+
+				std::string status;
+					if(level < min) status = "Drought!";
+					else if(level > max)status = "Flood!";
+					else status = "At standard Expectation!";
+
+				std::cout<<"Region " <<region->getName() <<"\n"
+					<<"Level: " <<level <<"\n"
+					<<"Range: " <<min << "(minimum)" <<"& " <<max <<"(maximum)" <<"\n"
+					<<"Status: " <<status <<std::endl;
+		}
+		std::cout<< std::endl;
+
+	}
+	//End of student code
+
+
 		manager.nexthour();
 	}
 }
@@ -122,7 +148,7 @@ void solveProblems(AcequiaManager& manager)
 //This would be the perfect opportunity to identify the tools learned from ECE 231L such as:
 //data structures (stacks, queues, trees(?)), templates, vector class functions, etc... to aid in the algorithm solution
 
-/*
+
 int findCanal(std::vector<Canal *> canals, std::string region)
 {
 	int match;
@@ -147,7 +173,9 @@ void release(std::vector<Canal *> canals, std::string region)
 void close(std::vector<Canal *> canals, std::string region)
 {
 	int match = findCanal(canals, region);
-	canals[match]->toggleOpen(false);
+		if(match != -1) {
+			canals[match]->toggleOpen(false);
+		}
 }
 
 
@@ -188,7 +216,23 @@ void solveProblems(AcequiaManager& manager)
 			}
 		}
 		
+		//Student Added Code
+		std::cout<<"Hour" <<manager.hour <<":\n";
+			for(size_t i=0; i<region.size(); ++i) {
+				Region* region = regions[i];
+				std::cout<<" " <region->name <<"\n"
+					<<"Flooded: " <<region->isFlooded <<"\n"
+					<<"Drought: " <<region->isInDrought << std::endl;
+			}
+
+		//student End of Code
+
 		manager.nexthour();
 	}
+
+
 }
-*/
+
+
+
+
