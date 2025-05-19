@@ -3,7 +3,15 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include <cstdlib>
+
+//added functions by student
+#include <cstdlib> 
+#include <iomanip>
+#include "AcequiaManager.cpp"
+#include "SimulatorMain.cpp"
+#include "StudentSolution.cpp"
+
+
 
 
 int main(){
